@@ -7,7 +7,7 @@ const octokit = require('@octokit/rest')();
 
 const { star, pattern, secret } = commandLineArgs([
   { name: 'star', type: Boolean, },
-  { name: 'pattern', type: String, },
+  { name: 'pattern', type: String, defaultOption: '2018Q3' },
   { name: 'secret', type: String, defaultOption: process.env.GITHUB_OAUTH_KEY }
 ]);
 

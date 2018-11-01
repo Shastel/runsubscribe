@@ -5,10 +5,10 @@ const ProgressBar = require('progress');
 const commandLineArgs = require('command-line-args');
 const octokit = require('@octokit/rest')();
 
-const { star, pattern } = commandLineArgs({
-  name: 'star', type: Boolean,
-  name: 'pattern', type: String
-});
+const { star, pattern } = commandLineArgs([
+  { name: 'star', type: Boolean, },
+  { name: 'pattern', type: String, },
+]);
 
 octokit.authenticate({
   type: 'oauth',
@@ -57,13 +57,11 @@ paginate(octokit.repos.getForOrg, {
 }).then((names) => {
   const bar = new ProgressBar('Unwatching repos: [:bar] :percent :etas', getProgressDefaults(names.length));
 
-  return names.reduce((R, repo) => {
+  names.reduce((R, repo) => {
     return R.then(() => {
       return octokit.activity.unwatchRepo({owner, repo}).then(() => {
         bar.tick();
       })
     });
   }, Promise.resolve());
-}).then(async () => {
-  console.log('Completed');
 });

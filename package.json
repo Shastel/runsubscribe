@@ -1,0 +1,25 @@
+{
+  "name": "runsubscribe",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shastel/runsubscribe.git"
+  },
+  "author": "max@shas.tel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shastel/runsubscribe/issues"
+  },
+  "homepage": "https://github.com/Shastel/runsubscribe#readme",
+  "dependencies": {
+    "@octokit/rest": "^15.15.1",
+    "command-line-args": "^5.0.2",
+    "dotenv": "^6.1.0",
+    "progress": "^2.0.1"
+  }
+}

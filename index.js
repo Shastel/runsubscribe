@@ -5,14 +5,20 @@ const ProgressBar = require('progress');
 const commandLineArgs = require('command-line-args');
 const octokit = require('@octokit/rest')();
 
-const { star, pattern } = commandLineArgs([
+const { star, pattern, secret } = commandLineArgs([
   { name: 'star', type: Boolean, },
   { name: 'pattern', type: String, },
+  { name: 'secret', type: String, defaultOption: process.env.GITHUB_OAUTH_KEY }
 ]);
+
+if (!secret) {
+  console.error('Param \'secret\' is missing');
+  process.exit(1);
+}
 
 octokit.authenticate({
   type: 'oauth',
-  token: process.env.GITHUB_OAUTH_KEY,
+  token: secret,
 });
 
 if (star) {

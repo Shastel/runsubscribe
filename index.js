@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 require('dotenv').config();
 
 const ProgressBar = require('progress');

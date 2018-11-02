@@ -4,10 +4,7 @@
 
 ## Usage
 ```sh
-git clone git@github.com:Shastel/runsubscribe.git
-cd runsubscribe
-npm i
-npm start -- --secret YOUR_GITHUB_OAUTH_KEY --pattern 2018Q3 --star
+npx github:Shastel/runsubscribe --secret YOUR_GITHUB_OAUTH_KEY --pattern 2018Q3 --star
 ```
 
 cli options:  

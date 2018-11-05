@@ -4,10 +4,10 @@
 
 ## Usage
 ```sh
-npx github:Shastel/runsubscribe --secret YOUR_GITHUB_OAUTH_KEY --pattern 2018Q3 --star
+npx github:Shastel/runsubscribe -s YOUR_GITHUB_OAUTH_KEY -p 2018Q3 -t
 ```
 
 cli options:  
-- `secret` - your github oauth key  
-- `pattern` - pattern for unwatching (2018Q3 by default)  
-- `star` - if you want to star this repo 😉  
+- `--secret -s` - your [github oauth key](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)  
+- `--pattern -p` - pattern for unwatching (2018Q3 by default)  
+- `--star -t` - if you want to star this repo 😉  

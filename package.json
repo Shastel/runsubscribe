@@ -23,5 +23,8 @@
     "command-line-args": "^5.0.2",
     "dotenv": "^6.1.0",
     "progress": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.8.0"
   }
 }

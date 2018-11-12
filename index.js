@@ -12,7 +12,7 @@ let { secret, pattern, star } = commandLineArgs([
   { name: 'star', type: Boolean, alias: 't' },
 ]);
 
-if (!secret || !process.env.GITHUB_OAUTH_KEY) {
+if (!secret && !process.env.GITHUB_OAUTH_KEY) {
   // eslint-disable-next-line
   console.error('Param \'secret\' is missing');
   process.exit(1);

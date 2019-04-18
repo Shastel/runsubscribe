@@ -4,7 +4,7 @@
 
 ## Usage
 ```sh
-npx github:Shastel/runsubscribe -s YOUR_GITHUB_OAUTH_KEY -p 2018Q3 -t
+npx github:Shastel/runsubscribe -s YOUR_GITHUB_OAUTH_KEY -p 2019Q1 -t
 ```
 
 cli options:  

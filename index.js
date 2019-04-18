@@ -7,7 +7,7 @@ const commandLineArgs = require('command-line-args');
 const octokit = require('@octokit/rest')();
 
 let { secret, pattern, star } = commandLineArgs([
-  { name: 'pattern', type: String, alias: 'p', defaultOption: '2018Q3' },
+  { name: 'pattern', type: String, alias: 'p', defaultOption: '2019Q1' },
   { name: 'secret', type: String, alias: 's' },
   { name: 'star', type: Boolean, alias: 't' },
 ]);

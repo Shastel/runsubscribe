@@ -4,7 +4,7 @@ require('dotenv').config();
 const ProgressBar = require('progress');
 
 const commandLineArgs = require('command-line-args');
-const octokit = require('@octokit/rest')();
+const Octokit = require('@octokit/rest');
 
 let { secret, pattern, star } = commandLineArgs([
   { name: 'pattern', type: String, alias: 'p', defaultOption: '2019Q1' },
@@ -18,9 +18,8 @@ if (!secret && !process.env.GITHUB_OAUTH_KEY) {
   process.exit(1);
 }
 
-octokit.authenticate({
-  type: 'oauth',
-  token: secret || process.env.GITHUB_OAUTH_KEY,
+const octokit = Octokit({
+  auth: secret || process.env.GITHUB_OAUTH_KEY
 });
 
 if (star) {
@@ -58,7 +57,7 @@ async function loadFromQueue() {
 
   const repo = unwatchQueue.shift();
 
-  return octokit.activity.unwatchRepo({owner, repo})
+  return octokit.activity.deleteRepoSubscription({owner, repo})
       .then(() => progress.tick())
       // Each unwatch req will trigger 2 new, it significant faster, but don't trigger abuse mechanism
       // In future can be uptadet to use 3 req at time
@@ -67,21 +66,11 @@ async function loadFromQueue() {
 
 async function loadRepos() {
 
-  let response = await octokit.repos.getForOrg(Object.assign({ per_page: 100 }, {
+  let options = await octokit.repos.listForOrg.endpoint.merge(Object.assign({ per_page: 100 }, {
     org: owner,
     type: 'private'
   }));
-
-  progress.tick();
-
-  const { data } = response;
-  processPartial(data)
-
-  while (octokit.hasNextPage(response)) {
-    progress.total++;
-    response = await octokit.getNextPage(response);
-    progress.tick();
-
+  for await (const response of octokit.paginate.iterator(options)) {
     processPartial(response.data);
   }
 }

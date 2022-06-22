@@ -19,7 +19,7 @@ if (!secret && !process.env.GITHUB_OAUTH_KEY) {
 }
 
 octokit.authenticate({
-  type: 'oauth',
+  type: 'token',
   token: secret || process.env.GITHUB_OAUTH_KEY,
 });
 
